@@ -8,10 +8,22 @@ ARG PIP_VERSION=24.3.1
 
 # Setup base
 # hadolint ignore=SC2102
-RUN apk update
-RUN apk add --no-cache coreutils libffi musl sed wget
-RUN apk add --no-cache --virtual .build-dependencies g++ git libffi-dev libxml2-dev libxslt-dev musl-dev
-RUN pip install --no-cache-dir --upgrade pip==${PIP_VERSION} && \
+RUN apk add --no-cache \
+    coreutils=9.5-r2 \
+    libffi=3.4.6-r0 \
+    musl=1.2.5-r8 \
+    openssl=3.3.2-r4 \
+    sed=4.9-r2 \
+    wget=1.25.0-r0 && \
+    apk add --no-cache --virtual .build-dependencies \
+        g++=14.2.0-r4 \
+        git=2.47.2-r0 \
+        libffi-dev=3.4.6-r0 \
+        libxml2-dev=2.13.4-r3 \
+        libxslt-dev=1.1.42-r1 \
+        musl-dev=1.2.5-r8 \
+        openssl-dev=3.3.2-r4 && \
+    pip install --no-cache-dir --upgrade pip==${PIP_VERSION} && \
     pip3 install --no-cache-dir dns-lexicon[full]==${LEXICON_VERSION} && \
     mkdir -p /opt /var/www/dehydrated && \
     git clone https://github.com/dehydrated-io/dehydrated.git --branch ${DEHYDRATED_VERSION} --depth 1 /opt/dehydrated/ && \
