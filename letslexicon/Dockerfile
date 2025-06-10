@@ -31,6 +31,7 @@ RUN apk add --no-cache \
 
 # Copy root filesystem
 COPY rootfs /
+RUN chmod +x /opt/dehydrated/dehydrated.default.sh
 
 # Build arguments
 ARG BUILD_ARCH
