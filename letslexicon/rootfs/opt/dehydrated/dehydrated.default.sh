@@ -10,7 +10,7 @@ export PROVIDER_UPDATE_DELAY=${PROVIDER_UPDATE_DELAY:-"30"}
 export PROVIDER=${PROVIDER:-"cloudflare"}
 
 function deploy_challenge {
-    local chain=($@)
+    local chain=("$@")
     for ((i=0; i < $#; i+=3)); do
         local DOMAIN="${chain[i]}" TOKEN_FILENAME="${chain[i+1]}" TOKEN_VALUE="${chain[i+2]}"
 
@@ -46,7 +46,7 @@ function deploy_challenge {
 }
 
 function clean_challenge {
-    local chain=($@)
+    local chain=("$@")
     for ((i=0; i < $#; i+=3)); do
         local DOMAIN="${chain[i]}" TOKEN_FILENAME="${chain[i+1]}" TOKEN_VALUE="${chain[i+2]}"
 
