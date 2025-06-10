@@ -16,12 +16,11 @@ function deploy_challenge {
 
         echo "deploy_challenge called: ${DOMAIN}, ${TOKEN_FILENAME}, ${TOKEN_VALUE}"
 
-        lexicon $PROVIDER --resolve-zone-name create ${DOMAIN} TXT --name="_acme-challenge.${DOMAIN}." \
-        --content="${TOKEN_VALUE}"
+        lexicon "$PROVIDER" --resolve-zone-name create "${DOMAIN}" TXT --name="_acme-challenge.${DOMAIN}." --content="${TOKEN_VALUE}"
     done
 
     local DELAY_COUNTDOWN=$PROVIDER_UPDATE_DELAY
-    while [ $DELAY_COUNTDOWN -gt 0 ]; do
+    while [ "$DELAY_COUNTDOWN" -gt 0 ]; do
         echo -ne "${DELAY_COUNTDOWN}\033[0K\r"
         sleep 1
         : $((DELAY_COUNTDOWN--))
@@ -52,8 +51,7 @@ function clean_challenge {
 
         echo "clean_challenge called: ${DOMAIN}, ${TOKEN_FILENAME}, ${TOKEN_VALUE}"
 
-        lexicon $PROVIDER delete ${DOMAIN} TXT --name="_acme-challenge.${DOMAIN}." \
-        --content="${TOKEN_VALUE}"
+        lexicon "$PROVIDER" delete "${DOMAIN}" TXT --name="_acme-challenge.${DOMAIN}." --content="${TOKEN_VALUE}"
     done
 
     # This hook is called after attempting to validate each domain
@@ -139,6 +137,6 @@ startup_hook() {
 }
 
 HANDLER=$1; shift;
-if [ -n "$(type -t $HANDLER)" ] && [ "$(type -t $HANDLER)" = function ]; then
+if [ -n "$(type -t "$HANDLER")" ] && [ "$(type -t "$HANDLER")" = function ]; then
   $HANDLER "$@"
 fi
