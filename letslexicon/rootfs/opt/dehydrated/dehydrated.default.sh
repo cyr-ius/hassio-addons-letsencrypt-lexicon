@@ -16,7 +16,7 @@ function deploy_challenge {
 
         echo "deploy_challenge called: ${DOMAIN}, ${TOKEN_FILENAME}, ${TOKEN_VALUE}"
 
-        lexicon "$PROVIDER" --resolve-zone-name create "${DOMAIN}" TXT --name="_acme-challenge.${DOMAIN}." --content="${TOKEN_VALUE}"
+        lexicon --resolve-zone-name "$PROVIDER" create "${DOMAIN}" TXT --name="_acme-challenge.${DOMAIN}." --content="${TOKEN_VALUE}"
     done
 
     local DELAY_COUNTDOWN=$PROVIDER_UPDATE_DELAY
