@@ -3,7 +3,7 @@ name: Let's Encrypt with Lexicon
 version: dev
 slug: letslexicon
 description: Manage certificate from Let's Encrypt using Lexicon DNS
-url: https://github.com/troykelly/hassio-addons-letsencrypt-lexicon/
+url: https://github.com/cyr-ius/hassio-addons-letsencrypt-lexicon/
 codenotary: codenotary@troykelly.com
 init: false
 image: ghcr.io/troykelly/letslexicon/{arch}

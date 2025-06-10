@@ -21,7 +21,7 @@ The generated certificate can be used within others addons.
 The installation of this add-on is straightforward and easy to do.
 
 1. Navigate in your Home Assistant frontend to **Hass.io** -> **Add-on Store**.
-2. Add a new repository by URL `https://github.com/troykelly/hassio-addons`
+2. Add a new repository by URL `https://github.com/cyr-ius/hassio-addons`
 3. Find the "letslexicon" add-on and click it.
 4. Click on the "INSTALL" button.
 
@@ -982,9 +982,9 @@ In case you've found a bug, please [open an issue on our GitHub][issue].
 [armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
 [armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
 [i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
-[keybase]: https://keybase.io/troykelly
+[keybase]: https://keybase.io/cyr-ius
 [forum]: https://community.home-assistant.io
-[issue]: https://github.com/troykelly/hassio-addons-letsencrypt-lexicon/issues
+[issue]: https://github.com/cyr-ius/hassio-addons-letsencrypt-lexicon/issues
 [certbot]: https://certbot.eff.org
 [source-shield]: https://img.shields.io/badge/version-v0.7.0-blue.svg
 [source]: https://github.com/lukas2511/dehydrated/releases/tag/v0.7.0
