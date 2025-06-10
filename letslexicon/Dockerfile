@@ -16,7 +16,7 @@ RUN apk add --no-cache coreutils libffi musl sed wget
 RUN apk add --no-cache --virtual .build-dependencies g++ git libffi-dev libxml2-dev libxslt-dev musl-dev
 RUN pip install --no-cache-dir --upgrade pip==${PIP_VERSION} && \
     pip3 install --no-cache-dir dns-lexicon[full]==${LEXICON_VERSION} && \
-    mkdir -p /opt /var/www/dehydrated && \
+    mkdir -p /var/www/dehydrated && \
     git clone https://github.com/dehydrated-io/dehydrated.git --branch ${DEHYDRATED_VERSION} --depth 1 /opt/dehydrated/ && \
     apk del .build-dependencies
 
