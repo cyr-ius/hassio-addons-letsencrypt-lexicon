@@ -20,7 +20,7 @@ RUN apk add --no-cache \
         libffi-dev=3.4.6-r0 \
         libxml2-dev=2.13.4-r3 \
         libxslt-dev=1.1.42-r1 \
-        musl-dev=1.2.5-r8 \
+        musl-dev=1.2.5-r8 && \
     pip install --no-cache-dir --upgrade pip==${PIP_VERSION} && \
     pip3 install --no-cache-dir dns-lexicon[full]==${LEXICON_VERSION} && \
     mkdir -p /opt /var/www/dehydrated && \
