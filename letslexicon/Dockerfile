@@ -2,9 +2,6 @@ ARG BUILD_FROM=ghcr.io/hassio-addons/base-python/amd64:16.0.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
-# Copy root filesystem
-COPY rootfs /
-
 ARG DEHYDRATED_VERSION=v0.7.1
 ARG LEXICON_VERSION=3.21.1
 ARG PIP_VERSION=24.3.1
@@ -16,9 +13,12 @@ RUN apk add --no-cache coreutils libffi musl sed wget
 RUN apk add --no-cache --virtual .build-dependencies g++ git libffi-dev libxml2-dev libxslt-dev musl-dev
 RUN pip install --no-cache-dir --upgrade pip==${PIP_VERSION} && \
     pip3 install --no-cache-dir dns-lexicon[full]==${LEXICON_VERSION} && \
-    mkdir -p /var/www/dehydrated && \
+    mkdir -p /opt /var/www/dehydrated && \
     git clone https://github.com/dehydrated-io/dehydrated.git --branch ${DEHYDRATED_VERSION} --depth 1 /opt/dehydrated/ && \
     apk del .build-dependencies
+
+# Copy root filesystem
+COPY rootfs /
 
 # Build arguments
 ARG BUILD_ARCH
