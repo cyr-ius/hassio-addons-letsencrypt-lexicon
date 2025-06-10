@@ -51,7 +51,7 @@ function clean_challenge {
 
         echo "clean_challenge called: ${DOMAIN}, ${TOKEN_FILENAME}, ${TOKEN_VALUE}"
 
-        lexicon "$PROVIDER" delete "${DOMAIN}" TXT --name="_acme-challenge.${DOMAIN}." --content="${TOKEN_VALUE}"
+        lexicon --resolve-zone-name "$PROVIDER" delete "${DOMAIN}" TXT --name="_acme-challenge.${DOMAIN}." --content="${TOKEN_VALUE}"
     done
 
     # This hook is called after attempting to validate each domain
