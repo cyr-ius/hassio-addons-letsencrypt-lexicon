@@ -2,6 +2,9 @@ ARG BUILD_FROM=ghcr.io/hassio-addons/base-python/amd64:16.1.4
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
+# Copy root filesystem
+COPY rootfs /
+
 ARG DEHYDRATED_VERSION=v0.7.1
 ARG LEXICON_VERSION=3.21.1
 ARG PIP_VERSION=24.3.1
@@ -27,11 +30,12 @@ RUN apk add --no-cache \
     pip3 install --no-cache-dir dns-lexicon[full]==${LEXICON_VERSION} && \
     mkdir -p /opt /var/www/dehydrated && \
     git clone https://github.com/dehydrated-io/dehydrated.git --branch ${DEHYDRATED_VERSION} --depth 1 /opt/dehydrated/ && \
+    curl -L https://raw.githubusercontent.com/dns-lexicon/dns-lexicon/refs/heads/main/examples/dehydrated.default.sh -o /opt/dehydrated/dehydrated.default.sh && \
+    chmod +x /opt/dehydrated/dehydrated.default.sh && \
     apk del .build-dependencies
 
-# Copy root filesystem
-COPY rootfs /
-RUN chmod +x /opt/dehydrated/dehydrated.default.sh
+# Sub-domain option
+RUN sed 's/lexicon $PROVIDER/lexicon --resolve-zone-name $PROVIDER/g' -i /opt/dehydrated/dehydrated.default.sh
 
 # Build arguments
 ARG BUILD_ARCH
