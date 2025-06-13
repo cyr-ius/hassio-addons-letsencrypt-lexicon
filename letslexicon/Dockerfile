@@ -34,6 +34,9 @@ RUN apk add --no-cache \
     chmod +x /opt/dehydrated/dehydrated.default.sh && \
     apk del .build-dependencies
 
+# Sub-domain option
+RUN sed 's/lexicon $PROVIDER/lexicon --resolve-zone-name $PROVIDER/g' -i /opt/dehydrated/dehydrated.default.sh
+
 # Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE
